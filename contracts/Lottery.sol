@@ -10,4 +10,9 @@ contract Lottery{
         require(msg.value > .01 ether); //minimum amount to enter lottery
         players.push(msg.sender); //adding a new player to the lottery
     }
+    function random() private view returns (uint){
+        //adding randomness for selection of a winner
+        //cryptographic hash algorithm
+        return uint(keccak256(block.difficulty, now, players));
+    }
 }
